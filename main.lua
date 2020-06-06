@@ -36,6 +36,21 @@ function _init()
   }
 end
 
+function spawnball()
+  b.x = bspw.x
+  b.y = bspw.y
+
+  local dir
+
+  if (rnd() > 0.5) then
+    dir = 1
+  else
+    dir = -1
+  end
+
+  b._v.x = dir
+end
+
 function stopplayer(p, y)
   p._v.y = 0
   p.y = y
@@ -137,9 +152,13 @@ function _update()
 
 
 
-  -- ball boundaries
-  if(b.x > 128-bd or b.x < 0) b._v.x *= -1
+  -- ball boundary
   if(b.y > 128-bd or b.y < 0) b._v.y *= -1
+
+  -- scoring
+  if(b.x > 128) p1.sc += 1
+  if(b.x < -bd) p2.sc +=1
+  if(b.x > 128 or b.x < -bd) spawnball()
 
   -- ball movement
   b.x += b._v.x * 2
@@ -154,8 +173,6 @@ end
 
 function _draw()
   cls()
-
-  print(p1._v.y)
 
   -- score
   drawscore(p1, 48)
