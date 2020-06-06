@@ -11,8 +11,16 @@ function collide(a, b)
 	local x1, x2 = a.x, a.x+pw
 	local y1, y2 = a.y, a.y+ph
 	
-	if(b.x > x1 and b.x < x2
-	and b.y > y1 and b.y < y2) then
+	local bx1, bx2 = b.x, b.x+bd
+	local by1, by2 = b.y, b.y+bd
+	
+	if(
+	(bx1 > x1 and bx1 < x2
+	and by1 > y1 and by1 < y2)
+	or
+	(bx2 > x1 and bx2 < x2 
+	and by2 > y1 and by2 < y2)
+	) then
 		return true
 	else return false	end
 
