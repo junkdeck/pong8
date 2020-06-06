@@ -42,7 +42,12 @@ function stopplayer(p, y)
 end
 
 function playerdeccel(p)
-  p._v.y += p_deccel*sgn(p._v.y)
+
+  if(p._v.y < deadzone and p._v.y > -deadzone) then
+    p._v.y = 0
+  else
+    p._v.y -= p_deccel*sgn(p._v.y)
+  end
 end
 
 function playermove(p)
