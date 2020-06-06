@@ -58,6 +58,8 @@ function playermove(p)
     p._v.y -= p_accel
   elseif(btn(⬇️, p.id)) then
     p._v.y += p_accel
+  else
+    playerdeccel(p)
   end
 
   -- limit player speed
@@ -131,9 +133,6 @@ function playerbounds(p)
       -- player 2 controls
       playermove(p2)
 
-      -- player deccel
-      playerdeccel(p1)
-      playerdeccel(p2)
 
       -- player bounds
       playerbounds(p1)
