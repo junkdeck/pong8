@@ -49,6 +49,7 @@ function spawnball()
   end
 
   b._v.x = dir
+  b._v.y = 1
 end
 
 function stopplayer(p, y)
