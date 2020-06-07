@@ -15,6 +15,8 @@ function _init()
   bspw={x=63, y=20}
 
   p1={
+    w=pw,
+    h=ph,
     id=0,
     x=0,
     y=64,
@@ -22,6 +24,8 @@ function _init()
     _v={x=0, y=0}
   }
   p2={
+    w=pw,
+    h=ph,
     id=1,
     x=123,
     y=64,
@@ -30,6 +34,8 @@ function _init()
   }
 
   b={
+    w=bd,
+    h=bd,
     x=bspw.x,
     y=bspw.y,
     _v={x=1, y=1}
@@ -94,24 +100,21 @@ function playerbounds(p)
 end
 
 function collide(a, b)
+  local x1, y1, w1, h1 = a.x, a.y, a.w, a.h
+  local x2, y2, w2, h2 = b.x, b.y, b.w, b.h
 
-  local x1, x2 = a.x, a.x+pw
-  local y1, y2 = a.y, a.y+ph
+  local xd = abs((x1 + (w1/2)) - (x2 + (w2/2)))
+  local xs = (w1/2) + (w2/2)
 
-  local bx1, bx2 = b.x, b.x+bd
-  local by1, by2 = b.y, b.y+bd
+  local yd = abs((y1 + (h1/2)) - (y2 + (h2/2)))
+  local ys = (h1/2) + (h2/2)
 
-  if(
-    (bx1 > x1 and bx1 < x2
-    and by1 > y1 and by1 < y2)
-    or
-    (bx2 > x1 and bx2 < x2 
-    and by2 > y1 and by2 < y2)
-    ) then
+  if(xd < xs and yd < ys) then
     sfx(0)
     return true
-  else return false	end
-
+  else
+    return false
+  end
 end
 
 function drawscore(p, x)
