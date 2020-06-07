@@ -108,6 +108,7 @@ function collide(a, b)
     (bx2 > x1 and bx2 < x2 
     and by2 > y1 and by2 < y2)
     ) then
+    sfx(0)
     return true
   else return false	end
 
@@ -154,7 +155,10 @@ function _update()
 
 
   -- ball boundary
-  if(b.y > 128-bd or b.y < 0) b._v.y *= -1
+  if(b.y > 128-bd or b.y < 0) then 
+    sfx(1)
+    b._v.y *= -1 
+  end
 
   -- scoring
   if(b.x > 128) p1.sc += 1
