@@ -133,7 +133,7 @@ function drawscore(p, x)
     c=sub(score, n, n)
 
     spr(numtable[tonum(c)], 
-    x-(#score*4)+(n*8), 0)
+    x-(#score/2)*8+(n*8), 0)
   end
 
 end
@@ -176,8 +176,8 @@ function _draw()
   cls()
 
   -- score
-  drawscore(p1, 48)
-  drawscore(p2, 80)
+  drawscore(p1, 44)
+  drawscore(p2, 68)
 
   -- player 1
   rectfill(p1.x, p1.y, 
@@ -188,4 +188,6 @@ function _draw()
   -- ball
   rectfill(b.x, b.y,
   b.x+bd, b.y+bd)
+  -- divider
+  rectfill(63,0,65,128, 7)
 end
